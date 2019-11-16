@@ -2,15 +2,16 @@ public struct Environment {
   public let templateClass: Template.Type
   public var extensions: [Extension]
   public var loader: Loader?
+  public var trimBehavior: TrimBehavior
 
-  public init(
-    loader: Loader? = nil,
-    extensions: [Extension] = [],
-    templateClass: Template.Type = Template.self
-  ) {
+  public init(loader: Loader? = nil,
+              extensions: [Extension] = [],
+              templateClass: Template.Type = Template.self,
+              trimBehavior: TrimBehavior = .none) {
     self.templateClass = templateClass
     self.loader = loader
     self.extensions = extensions + [DefaultExtension()]
+    self.trimBehavior = trimBehavior
   }
 
   public func loadTemplate(name: String) throws -> Template {
