@@ -2,14 +2,12 @@ public struct Environment {
   public let templateClass: Template.Type
   public var extensions: [Extension]
   public var trimBehavior: TrimBehavior
-
   public var loader: Loader?
 
   public init(loader: Loader? = nil,
               extensions: [Extension] = [],
               templateClass: Template.Type = Template.self,
               trimBehavior: TrimBehavior = .none) {
-
     self.templateClass = templateClass
     self.loader = loader
     self.extensions = extensions + [DefaultExtension()]
@@ -47,5 +45,4 @@ public struct Environment {
     template.environment = self
     return try template.render(context)
   }
-
 }
